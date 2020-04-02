@@ -1,0 +1,6 @@
+USE 201Final;
+DROP TABLE IF EXISTS UserInfo;
+CREATE TABLE UserInfo(
+    username VARCHAR(12) NOT NULL,
+    password  VARCHAR(20) NOT NULL
+);
