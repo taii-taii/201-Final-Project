@@ -1,0 +1,61 @@
+body{
+ background: #0086b3;
+ color:  #FCFAF8;
+ font-family: 'Oswald', sans-serif;
+}
+#title{
+  text-align: center;
+}
+
+#contacts{
+  width: 35%;
+  /*float:left;*/
+  text-align: center;
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+}
+
+#add-con{
+  background-color: #0078a1; /* Green */
+  border: none;
+  color: white;
+  width: 128px;
+  height: 38px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+#line{
+height: 80%;
+ width: 1px;
+ background: white;
+ top: 155px;
+ position: absolute;
+ left: 37%;
+}
+
+#projects{
+  width: 63%;
+  /*float:left;*/
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+}
+
+#add-proj{
+  background-color: #0078a1; /* Green */
+    margin-left: 20%;
+  border: none;
+  color: white;
+  width: 228px;
+  height: 38px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+  margin: 0 auto;
+  font-size: 16px;
+}

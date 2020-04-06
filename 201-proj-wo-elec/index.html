@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="index_2.js"></script>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link href="https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald" rel="stylesheet">
+  </head>
+  <body>
+  <div id="title" >
+    <h1>USERNAME</h1>
+  </div>
+
+  <div id="contacts">
+    <h2 margin-top="100px">CONTACTS</h2>
+    <button type="button" id="add-con" onclick="addcon()">Add Contact</button>
+  </div>
+
+  <div id="line">
+  </div>
+
+  <div id="projects" >
+    <h2>PROJECTS</h2>
+    <button type="button" id="add-proj" onclick="addproj()">Add Project</button>
+  </div>
+
+  <!--  to start go into folder and type npm start in terminal
+  We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+  -->
+  </body>
+</html>
