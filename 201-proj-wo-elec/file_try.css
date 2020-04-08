@@ -1,0 +1,65 @@
+body{
+ background: black;
+ /* background: #05386B; */
+ /* background-image: url(bgbg.jpg); */
+ color:  #FCFAF8;
+ font-family: 'Cardo', serif;
+}
+
+.btns{
+  width: 35%;
+  /*float:left;*/
+  height: 580px;
+  /* background: #0078a1; */
+  background: black;
+  text-align: center;
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+
+}
+
+
+
+#acc, #save, #del, #share, #users{
+  /* background-color: #0078a1; /* Green */
+  background-color: #66fcf1;
+  border-bottom:1px solid #45a29e;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  /* border-bottom-color: black;
+  border-top-color: black; */
+  color: white;
+  margin-bottom: 150px;
+  width:99%;
+  height: 38px;
+  text-align: center;
+  text-decoration: none;
+  display: table;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+
+#input_table {
+    width: 100%;
+}
+#inputFileNameToSaveAs{
+/*  width:500%;*/
+  width:152%;
+  text-align: center;
+}
+
+#inputTextToSave{
+  width:99%;
+  height:550px;
+}
+
+#input_field{
+  width: 63%;
+  /*float:left;*/
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+}
