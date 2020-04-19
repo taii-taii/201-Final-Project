@@ -50,6 +50,9 @@ public class ServerThread extends Thread {
 					serverText = (String) textString[0];
 				}
 				serverShadow = serverText;
+				
+				System.out.println("The updated server text is: ");
+				System.out.println(serverText);
 
 				// Broadcast to all other clients about the updated server text
 				server.broadcast(this);

@@ -54,14 +54,19 @@ public class Client extends Thread {
 			try {
 				
 				// Read in the updated local client text
-				System.out.println("Please enter the new text");
-				clientText = scan.nextLine(); //hey
+				while (clientText.equals(clientShadow)) {
+					System.out.println("Please enter the new text");
+					clientText = scan.nextLine();
+				}
 
 				// Send an array of the client shadow and the new text to the server
-				String[] clientUpdates = {clientShadow, clientText}; // comparing "hello" to "hey" = -llo +y
+				String[] clientUpdates = {clientShadow, clientText};
 				oos.writeObject(clientUpdates);
 
 				clientShadow = clientText;
+				
+				System.out.println("The updated client text is: ");
+				System.out.println(clientText);
 
 			} catch (IOException e) {
 				System.out.println("ioe in Client: " + e.getMessage());

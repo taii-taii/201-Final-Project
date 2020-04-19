@@ -12,7 +12,10 @@ public class Server {
 	public Server() {
 
 		int port = 3456;
-
+		//hello !! - tyler
+		// map: int (document ID) -> vector of ServerThreads
+		// when client leaves, remove them from vector
+		// 
 		// Connect to the port
 		try {
 			scanner =  new Scanner(System.in);
