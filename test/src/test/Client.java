@@ -11,21 +11,14 @@ import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import test.diff_match_patch.Patch;
+
 public class Client extends Thread {
 	private static String clientText = "";
 	private static String clientShadow = "";
 	private static Scanner scan;
 	private static diff_match_patch dmp;
 	private static LinkedList<test.diff_match_patch.Patch> list_of_patches_server;
-import test.diff_match_patch.Patch;
-
-public class Client {
-	private static String clientText = "";
-	private static String clientShadow;
-	private static Scanner scan;
-	private static diff_match_patch dmp;
-	private static transient LinkedList<test.diff_match_patch.Patch> list_of_patches_incoming;
-	private static transient LinkedList<test.diff_match_patch.Patch> list_of_patches_outgoing;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     Object[] textString;
