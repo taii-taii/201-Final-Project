@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class ServerThread extends Thread {
 	private Server server;
 	private Socket socket;
-    private ObjectOutputStream oos;
+	private ObjectOutputStream oos;
     private ObjectInputStream ois;
     private static String serverText = "";
 	private transient LinkedList<test.diff_match_patch.Patch> list_of_patches_client;
@@ -41,20 +41,8 @@ public class ServerThread extends Thread {
 				String[] clientUpdates = (String[])ois.readObject();
 
 				// Calculate the patches on the client side
-				list_of_patches_client = dmp.patch_make(clientUpdates[0], clientUpdates[1]); // comparing "hello" to "hey" = -llo +y
-
-				System.out.println("46 Patches: " + dmp.patch_toText(list_of_patches_client));
-
-				// Apply the patches to the server shadow
-				textString = dmp.patch_apply(list_of_patches_client, serverShadow);
-				serverShadow = (String) textString[0]; //hey
-
-				System.out.println("52 serverShadow: " + serverShadow);
-				System.out.println("53 serverText: " + serverText);
-
-//				// Send the server text and updated server shadow to the client
-//				String[] serverUpdates = {serverText, serverShadow}; //hello and hey
-//				oos.writeObject(serverUpdates);
+				list_of_patches_client = dmp.patch_make(clientUpdates[0], clientUpdates[1]);			
+				serverShadow = clientUpdates[1];
 
 				// Update the server text
 				synchronized (Server.class) {
@@ -62,9 +50,6 @@ public class ServerThread extends Thread {
 					serverText = (String) textString[0];
 				}
 				serverShadow = serverText;
-
-				System.out.println("The updated server text (on server side) is:");
-				System.out.println(serverText);
 
 				// Broadcast to all other clients about the updated server text
 				server.broadcast(this);
