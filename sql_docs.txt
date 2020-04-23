@@ -1,0 +1,5 @@
+Things to change for sql: 
+
+login.java
+server.java
+User.java
