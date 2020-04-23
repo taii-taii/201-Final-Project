@@ -1,0 +1,211 @@
+<%@page import="finalProject.Client_guest"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html style="background-color: #1e2833;">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>CSCI201LProject</title>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+<link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+<link rel="stylesheet" href="assets/css/button.css">
+<link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+<link rel="stylesheet" href="assets/css/Navigation-Clean-1.css">
+<link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<%@ page import="finalProject.Client" %> 
+
+<% 
+
+	String email = (String) session.getAttribute("email"); 
+
+	
+	String docID = (String) request.getAttribute("documentID");
+	
+	String ctext = ""; 
+	
+	Client c; 
+	
+	if (session.getAttribute("client") == null) {
+		c = new Client(docID, email); 
+		session.setAttribute("client", c);  
+	}
+	else {
+		c = (Client) session.getAttribute("client"); 
+	}
+	
+	
+	if ( ((String) request.getAttribute("text")) != null) {
+		 c.setText((String) request.getAttribute("text"));
+	}
+	
+	
+	ctext = c.getText(); 
+	
+%>
+	
+	
+
+<script>
+
+	
+		if (document.getElementById("code") != null) {
+			consol.log(document.getElementById("code").value)
+			document.getElementById("code").value = "<%=ctext%>"; 
+		}
+
+   function pushText(){
+			document.codeForm.submit();
+			console.log("we pushed");
+		}
+		
+		function pullText(){ 
+			document.pushForm.submit(); 
+			
+			
+			if (document.getElementById("code") != null) {
+				document.getElementById("code").value = "<%=ctext%>"; 
+			}
+			
+			console.log("we pulled");
+		}
+
+		$(document).ready(function() {
+/* 			 	setInterval("pullText()", 500); */
+		    setInterval("pullText()", 1000); 
+		}); 
+	
+	
+</script>
+
+
+</head>
+
+<body style="background-color: rgb(30, 40, 51);">
+	<%
+
+		//String email = (String) request.getAttribute("email"); 
+		//System.out.println("Text Editor e: " + email);
+		String documentID = (String) session.getAttribute("documentID");
+		//System.out.println("Text Editor di: " + documentID);
+		String documentName = (String) session.getAttribute("documentName");
+		//System.out.println("Text Editor dn: " + documentName); 
+		
+	%>
+	<div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navbar navbar-light navbar-expand-md navigation-clean"
+						style="background-color: rgb(30, 40, 51);">
+						<div class="container">
+							<a class="navbar-brand" href="#"
+								style="color: rgb(255, 255, 255);"><%=documentName%></a>
+							<button data-toggle="collapse" class="navbar-toggler"
+								data-target="#navcol-1">
+								<span class="sr-only">Toggle navigation</span><span
+									class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navcol-1">
+								<ul class="nav navbar-nav ml-auto">
+									<li class="nav-item" role="presentation"></li>
+									<li class="nav-item" role="presentation">
+										<form id="myHomeForm" method="post" action="homePage.jsp">
+											<input type="hidden" name="email" id="email" value=<%=email%>></input>
+											<a class="nav-link" href="#"
+												style="color: rgb(255, 255, 255);"
+												onclick="document.getElementById('myHomeForm').submit();">Home</a>
+										</form>
+									</li>
+									<li class="nav-item" role="presentation"><a
+										class="nav-link" href="index.html"
+										style="color: rgb(255, 255, 255);">Logout</a></li>
+								</ul>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-lg-2 text-center">
+					<form method="post" action="collaborators.jsp">
+						<%
+							session.setAttribute("email", email);
+							session.setAttribute("documentID", documentID);
+							session.setAttribute("documentName", documentName);
+						%>
+						<button class="btn btn-primary btn-lg" type="submit"
+							style="margin: 5px; background-color: #007bff;">Collaborators</button>
+					</form>
+					<form method="post" action="add.jsp">
+						<%
+							session.setAttribute("email", email);
+							session.setAttribute("documentID", documentID);
+							session.setAttribute("documentName", documentName);
+						%>
+						<button class="btn btn-primary btn-lg" type="submit"
+							style="margin: 5px; background-color: #4400ff;">Share</button>
+					</form>
+					<button class="btn btn-primary btn-lg" type="button" onclick="saveTextAsFile()"
+						style="margin: 5px; background-color: #c400ff;">Save My
+						File</button>
+				</div>
+				<div class="col-md-9 col-lg-10">
+				
+				<form name="codeForm" id="codeForm" method="POST" action="UpdateTextServlet"> 
+					<textarea autofocus id="code" name="code" onchange="pushText()" oninput="pushText()"
+					 style="width: 100%; height: vh; font-family: 'Source Code Pro', monospace; 
+					 font-size: 13px;"></textarea>
+				</form>
+				
+				
+				
+				<script>
+				
+				if (document.getElementById("code").value != null) {
+					document.getElementById("code").value = "<%=ctext%>"; 
+				}
+
+				function saveTextAsFile()
+				{
+				    var textToSave = document.getElementById("inputTextToSave").value;
+				    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+				    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+				    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+
+				    var downloadLink = document.createElement("a");
+				    downloadLink.download = fileNameToSaveAs;
+				    downloadLink.innerHTML = "Download File";
+				    downloadLink.href = textToSaveAsURL;
+				    downloadLink.onclick = destroyClickedElement;
+				    downloadLink.style.display = "none";
+				    document.body.appendChild(downloadLink);
+
+				    downloadLink.click();
+				}
+
+				function destroyClickedElement(event)
+				{
+				    document.body.removeChild(event.target);
+				}
+				</script>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<div>
+		<form name="pushForm" method="GET" action="PullTextServlet" ></form>
+	</div>
+</body>
+
+</html>
