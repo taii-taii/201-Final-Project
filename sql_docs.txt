@@ -3,5 +3,3 @@ Things to change for sql:
 login.java
 server.java
 User.java
-
-COMMENT OUT LINE 53 IN AUTHENTICAITONSERVLET
